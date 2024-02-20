@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO List</title>
+  </head>
+  <body>
+    <div id="todoContainer">
+      <input id="todoInput" type="text" />
+      <button id="todoAddButton">새 항목 추가</button>
+      <ul id="todoList"></ul>
+    </div>
+
+    <script>
+      document
+        .getElementById("todoAddButton")
+        .addEventListener("click", function () {
+          const todoList = document.getElementById("todoList");
+          const todoInput = document.getElementById("todoInput");
+
+          // 새로운 할 일 항목을 담을 li 요소 생성
+          const todoItem = document.createElement("li");
+
+          // 할 일 텍스트를 담을 span 요소 생성
+          const todoText = document.createElement("span");
+          todoText.textContent = todoInput.value; // input에서 입력받은 값을 사용
+
+          // 삭제 버튼 생성
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "삭제";
+
+          // 삭제 버튼에 클릭 이벤트 리스너 추가
+          deleteButton.addEventListener("click", function () {
+            todoList.removeChild(todoItem);
+          });
+
+          // li 요소에 텍스트와 삭제 버튼 추가
+          todoItem.appendChild(todoText);
+          todoItem.appendChild(deleteButton);
+
+          // 할 일 목록에 새로운 할 일 항목 추가
+          todoList.appendChild(todoItem);
+
+          // 입력 필드 초기화
+          todoInput.value = "";
+        });
+    </script>
+  </body>
+</html>
